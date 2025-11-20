@@ -25,7 +25,7 @@ ChartJS.defaults.borderColor = 'rgba(148,163,184,0.25)';
 //バックアップ　curl "http://localhost:3000/api/sales?action=backup"
 // http://localhost:3000/?view=charts グラフ、集計のみ
 //http://localhost:3000/　全て
-//npm run dev 
+//npm run dev 起動
 
 
 // ==== 型 ====
