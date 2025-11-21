@@ -45,8 +45,8 @@ const PRICE_MAP: Record<string, { price: number; cost: number }> = {
   'Tea_Hot': { price: 350, cost: 180 },
   'Tea_Ice': { price: 350, cost: 190 },
   'Lemonade': { price: 300, cost: 150 },
-  'kasi1': { price: 250, cost: 190 },
-  'kasi2': { price: 250, cost: 190 }
+  'Gateu': { price: 250, cost: 190 },
+  'Financier': { price: 250, cost: 190 }
 };
 const PRODUCT_OPTIONS = Object.keys(PRICE_MAP) as (keyof typeof PRICE_MAP)[];
 
@@ -56,8 +56,8 @@ const PRODUCT_COLORS: Record<string, { bg: string; border: string }> = {
   'Tea_Hot': { bg: '#a34016ff', border: '#a34016ff' },     // 赤
   'Tea_Ice': { bg: '#025b92ff', border: '#025b92ff' },     // 青
   'Lemonade':     { bg: '#f6ed3bff', border: '#f6ed3bff' },     //黄
-  'kasi1': { bg: '#06d937ff', border: '#06d937ff' }, // 黄緑
-  'kasi2': { bg: '#08eabdff', border: '#08eabdff' },   // 翡翠？
+  'Gateu': { bg: '#06d937ff', border: '#06d937ff' }, // 黄緑
+  'Financier': { bg: '#08b5eaff', border: '#08b5eaff' },   // 翡翠？
 };
 
 export default function Page() {
@@ -194,8 +194,8 @@ export default function Page() {
     'tea ice': 'Tea_Ice',
     'tea_ice': 'Tea_Ice',
     'lemonade': 'Lemonade',
-    'kasi1': 'kasi1',
-    'kasi2': 'kasi2',
+    'Gateu': 'Gateu',
+    'Financier': 'Financier',
   };
   function toCanonicalDisplay(raw: string) {
     const key = normalizeProductName(raw);
