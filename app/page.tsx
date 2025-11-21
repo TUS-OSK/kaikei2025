@@ -15,8 +15,9 @@ import { useEffect, useMemo, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, Colors);
-ChartJS.defaults.color = '#e5e7eb';
-ChartJS.defaults.borderColor = 'rgba(148,163,184,0.25)';
+// グラフ内の文字色と枠線色を白背景に合わせて調整
+ChartJS.defaults.color = '#000000ff';
+ChartJS.defaults.borderColor = 'rgba(148,163,184,0.5)';
 
 //note
 //集計時間　何時から 129行目 %デフォルトで「今日の 0:00〜23:59」をセット
@@ -468,7 +469,7 @@ export default function Page() {
                 padding: '10px 14px',
                 borderRadius: 8,
                 background: '#1d4ed8', // blue background
-                color: '#ffffff', // white text
+                color: '#ffffffff', // white text
                 border: 'none',
                 fontWeight: 700,
                 cursor: 'pointer',
