@@ -53,11 +53,11 @@ const PRODUCT_OPTIONS = Object.keys(PRICE_MAP) as (keyof typeof PRICE_MAP)[];
 // ==== 商品ごとの色（未指定は自動HSLへフォールバック） ====
 
 const PRODUCT_COLORS: Record<string, { bg: string; border: string }> = {
-  'Tea_Hot': { bg: '#a34016ff', border: '#a34016ff' },     // 赤
-  'Tea_Ice': { bg: '#025b92ff', border: '#025b92ff' },     // 青
-  'Lemonade':     { bg: '#f6ed3bff', border: '#f6ed3bff' },     //黄
-  'Gateu': { bg: '#06d937ff', border: '#06d937ff' }, // 黄緑
-  'Financier': { bg: '#08b5eaff', border: '#08b5eaff' },   // 翡翠？
+  'Tea_Hot': { bg: '#fa1515ff', border: '#000000ff' },     // 赤
+  'Tea_Ice': { bg: '#2446eeff', border: '#000000ff' },     // 青
+  'Lemonade':     { bg: '#fffb00ff', border: '#000000ff' },     //黄
+  'Gateu': { bg: '#67e35fff', border: '#000000ff' }, // 黄緑
+  'Financier': { bg: '#e8a531ff', border: '#000000ff' },   // 翡翠？
 };
 
 export default function Page() {
