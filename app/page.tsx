@@ -65,6 +65,15 @@ export default function Page() {
   const sp = useSearchParams();
   //chartのみのリンク生成
   const chartsOnly = sp.get('view') === 'charts';
+  useEffect(() => {
+    if (!chartsOnly) return;
+    const id = setInterval(() => {
+      if (typeof window !== 'undefined') {
+        window.location.reload();
+      }
+    }, 5 * 60 * 1000); // 5分ごと
+    return () => clearInterval(id);
+  }, [chartsOnly]);
   // 入力フォーム
   const [product, setProduct] = useState<string>(PRODUCT_OPTIONS[0]);
   const [price, setPrice]   = useState<number>(PRICE_MAP[PRODUCT_OPTIONS[0]].price);
