@@ -257,6 +257,51 @@ export default function Page() {
     setOpenOrders(json.orders ?? []);
   }
   useEffect(() => { loadOpenOrders(); }, []);
+
+  // サーバー上のデータ（recent / openOrders）から最大注文IDを確認し、
+  // localStorage のカウンタと同期させる
+  useEffect(() => {
+    try {
+      let maxFromData = 0;
+      const parseOrderId = (oid: any) => {
+        const n = Number(oid);
+        return Number.isFinite(n) && n > 0 ? n : 0;
+      };
+
+      // 当日のレコードから最大注文IDを取得（recent）
+      for (const s of recent) {
+        if (!s.ts) continue;
+        if (makeDateKey(new Date(s.ts)) !== dateKey) continue;
+        const n = parseOrderId((s as any).orderId);
+        if (n > maxFromData) maxFromData = n;
+      }
+
+      // 未完了注文の注文IDも確認（openOrders）
+      for (const o of openOrders) {
+        const n = parseOrderId((o as any).orderId);
+        if (n > maxFromData) maxFromData = n;
+      }
+
+      // サーバーデータから見た「次の番号」
+      const nextFromData = maxFromData > 0 ? maxFromData + 1 : 1;
+
+      // localStorage 上の値も取得
+      const savedRaw = localStorage.getItem(storageKey);
+      const saved = savedRaw ? Math.max(1, parseInt(savedRaw, 10) || 1) : 1;
+
+      // 衝突を避けるため、より大きい方を採用する
+      const desired = Math.max(saved, nextFromData);
+
+      // 内部カウンタと localStorage を同期
+      if (desired !== saved) {
+        localStorage.setItem(storageKey, String(desired));
+      }
+      setOrderCounter(desired);
+
+    } catch {
+      // SSR / 権限エラーなどは無視（画面を壊さない）
+    }
+  }, [recent, openOrders, dateKey, storageKey]);
   async function completeOrder(oid: string) {
     await fetch('/api/sales?action=completeOrder', {
       method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ orderId: oid })
